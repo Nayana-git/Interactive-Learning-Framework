@@ -1,0 +1,13 @@
+﻿@model IEnumerable<CourseEditVm>
+@{
+    ViewData["Title"] = "Dashboard";
+
+    ViewData.AddActivePage(ManageNavPages.Dashboard);
+}
+
+@foreach (var item in Model)
+{
+
+    <a asp-action="Index" asp-controller="SubModule" asp-route-id="@item.Id" class="btn btn-primary btn-lg btn-block" role="button">@item.Name </a>
+}
+

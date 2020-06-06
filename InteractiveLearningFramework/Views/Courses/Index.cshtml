@@ -1,0 +1,112 @@
+﻿@model IEnumerable<InteractiveLearningFramework.Models.Course>
+
+
+@{
+    ViewData["Title"] = "Index";
+    ViewData.AddActivePage(ManageNavPages.Course);
+
+}
+<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+
+<div class="card">
+    <div class="card-header">
+        Courses
+    </div>
+    <div class="card-body">
+        <table class="table table-condensed table-bordered table-striped">
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.StartDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ShortName)
+                </th>
+                <th></th>
+
+            </tr>
+            @if (Model.Count() == 0)
+            {
+                <tr>
+                    <td colspan="4" class="text-center">
+                        No roles
+                    </td>
+                </tr>
+            }
+            else
+            {
+                foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.StartDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.EndDate)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ShortName)
+                        </td>
+                        <td>
+                            <a class="btn btn-sm btn-success" asp-controller="Courses" asp-action="Edit" asp-route-id="@item.Id">
+                                Edit
+                            </a>
+                            <a class="btn btn-sm btn-danger" asp-controller="Courses" asp-action="Delete" asp-route-id="@item.Id">
+                                Delete
+                            </a>
+                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#exampleModalLong">
+                                Assign
+                            </button>
+                          
+                            <!-- Modal -->
+                            <div class="modal fade" id="exampleModalLong" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLongTitle">Select the Teacher</h5>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <div class="dropdown">
+                                                <button class="btn btn-sm btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    --SELECT--
+                                                </button>
+                                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                                   
+                                                    <a class="dropdown-item" href="#">fafa</a>
+                                                    <a class="dropdown-item" href="#">Another action</a>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-sm btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-sm btn-primary">Save changes</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            }
+        </table>
+
+        <a class="btn btn-primary" asp-controller="Courses" asp-action="Create">
+            Create
+        </a>
+        <a class="btn btn-primary" asp-controller="Home" asp-action="Index">
+            Home
+        </a>
+    </div>
+</div>

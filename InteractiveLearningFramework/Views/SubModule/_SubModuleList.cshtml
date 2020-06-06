@@ -1,0 +1,29 @@
+﻿@model InteractiveLearningFramework.ViewModels.CourseModuleVm
+
+<div class="accordion" id="accordionExample">
+    <div class="card bg-light mb-3">
+        <div class="card-title" id="headingFour">
+            <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_@Model.ModuleId" aria-expanded="true" aria-controls="collapse_@Model.ModuleId">
+                <i class="fa icon" aria-hidden="true"></i>@Model.Title
+            </button>
+        </div>
+
+        <div id="collapse_@Model.ModuleId" class="collapse show" aria-labelledby="headingFour" data-parent="#accordionExample">
+            <div class="card-body">
+
+
+                @{
+                    foreach (var model in Model.SubModuleList)
+                    {
+
+                        @Html.Partial("_SubModuleItemList", model)
+                    }
+                }
+
+
+
+                <a asp-controller="SubModule" asp-action="Create" asp-route-id="@Model.ModuleId" class="btn btn-link">Add Sub Module</a>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+@using Microsoft.AspNetCore.Identity
+@inject SignInManager<User> SignInManager
+@inject UserManager<User> UserManager
+<ul class="navbar-nav">
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" asp-controller="Manage" asp-action="Index" title="Manage" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Hello @User.Identity.Name!
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+
+                <a class="nav-link dropdown-item" asp-area="" asp-controller="Manage" asp-action="Index" title="Profile"><i class="icon fa fa-user fa-fw " aria-hidden="true"></i>Profile</a>
+                <a class="nav-link dropdown-item" asp-area="" asp-controller="Manage" asp-action="ChangePassword" title="Manage"><i class="icon fa fa-key fa-fw "></i>Change Password</a>
+
+                <div class="dropdown-divider"></div>
+
+                <form class="form-inline" asp-controller="Account" asp-action="Logout" method="post" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                    <button type="submit" class="dropdown-item nav-link btn btn-link text-dark"><i class="icon fa fa-sign-out fa-fw "></i>Logout</button>
+                </form>
+
+            </div>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-area="" asp-controller="Account" asp-action="Register">Register</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link text-dark" asp-controller="Account" asp-action="Login">Login</a>
+        </li>
+    }
+</ul>

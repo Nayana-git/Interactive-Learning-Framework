@@ -1,0 +1,22 @@
+﻿@using InteractiveLearningFramework.Views.Manage
+@inject SignInManager<User> SignInManager
+@{
+    var hasExternalLogins = (await SignInManager.GetExternalAuthenticationSchemesAsync()).Any();
+}
+
+@*<nav class="list-group">
+
+    <li class="@ManageNavPages.IndexNavClass(ViewContext)"><a asp-action="Index">Profile</a></li>
+    <li class="@ManageNavPages.ChangePasswordNavClass(ViewContext)"><a asp-action="ChangePassword">Password</a></li>
+    @if (hasExternalLogins)
+    {
+        <li class="@ManageNavPages.ExternalLoginsNavClass(ViewContext)"><a asp-action="ExternalLogins">External logins</a></li>
+    }
+    <li class="@ManageNavPages.TwoFactorAuthenticationNavClass(ViewContext)"><a asp-action="TwoFactorAuthentication">Two-factor authentication</a></li>
+    </nav>*@
+@*<div class="list-group m-t-1">
+    <a asp-controller="Manage" asp-action="Index" class="list-group-item list-group-item-action @ManageNavPages.IndexNavClass(ViewContext)">
+        Profile
+    </a>
+    <a asp-controller="Manage" asp-action="ChangePassword" class="list-group-item list-group-item-action @ManageNavPages.ChangePasswordNavClass(ViewContext)">Dapibus ac facilisis in</a>
+</div>*@

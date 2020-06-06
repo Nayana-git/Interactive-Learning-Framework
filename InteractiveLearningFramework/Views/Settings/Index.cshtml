@@ -1,0 +1,40 @@
+﻿@model InteractiveLearningFramework.ViewModels.SettingsTab
+
+@{
+    ViewData["Title"] = "Settings";
+    ViewData.AddActivePage(ManageNavPages.Settings);
+}
+
+<div class="card text-center">
+    <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+            <li class="nav-item">
+                <a class="nav-link @(Model.ActiveTab == InteractiveLearningFramework.ViewModels.Tab.Users ? "active" : string.Empty)" asp-route-tabname="Users" asp-action="SwitchToTabs">User</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(Model.ActiveTab == InteractiveLearningFramework.ViewModels.Tab.Roles ? "active" : string.Empty)" asp-route-tabname="Roles" asp-action="SwitchToTabs">Role</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link @(Model.ActiveTab == InteractiveLearningFramework.ViewModels.Tab.Courses ? "active" : string.Empty)" asp-route-tabname="Courses" asp-action="SwitchToTabs">Course</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+
+
+@switch (Model.ActiveTab)
+{
+    case InteractiveLearningFramework.ViewModels.Tab.Courses:
+        @await Component.InvokeAsync("Course");
+        break;
+    case InteractiveLearningFramework.ViewModels.Tab.Users:
+        @await Component.InvokeAsync("User");
+        break;
+    case InteractiveLearningFramework.ViewModels.Tab.Roles:
+        @await Component.InvokeAsync("Role");
+        break;
+    default:
+        break;
+}
